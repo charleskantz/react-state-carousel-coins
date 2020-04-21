@@ -5,20 +5,24 @@ import image2 from "./image2.jpg";
 import image3 from "./image3.jpg";
 import Card from "./Card";
 
-function Carousel(props) {
+function Carousel({cardData, title}) {  // destructure props!!
   const [cardIdx, setCardIdx] = useState(0);
-  const card = props.cardData[cardIdx];
-  const total = props.cardData.length;
-  const goForward = () => setCardIdx(cardIdx + 1);
+  const card = cardData[cardIdx];
+  const total = cardData.length;
+  const goForward = () => setCardIdx(cardIdx + 1);  // could be one function: 'go(step)'
+  const goBackward = () => setCardIdx(cardIdx - 1);
+  const leftArrowStyle = cardIdx === 0 ? {visibility:"hidden"} : {visibility:"visible"};
+  const rightArrowStyle = cardIdx === 2 ? {visibility:"hidden"} : {visibility:"visible"};
 
   return (
     <div className="Carousel">
-      <h1>{props.title}</h1>
+      <h1>{title}</h1>
       <div className="Carousel-main">
         <i
           className="fas fa-chevron-circle-left fa-2x"
-          onClick={goForward}
+          onClick={goBackward}
           data-testid="left-arrow"
+          style={leftArrowStyle}
         />
         <Card
           caption={card.caption}
@@ -30,6 +34,7 @@ function Carousel(props) {
           className="fas fa-chevron-circle-right fa-2x"
           onClick={goForward}
           data-testid="right-arrow"
+          style={rightArrowStyle}
         />
       </div>
     </div>

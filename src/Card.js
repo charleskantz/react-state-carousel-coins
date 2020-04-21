@@ -1,13 +1,13 @@
 import React from "react";
 import "./Card.css";
 
-function Card(props) {
+function Card({caption, src, totalNum, currNum}) { // destructure props!
   return (
     <div className="Card">
-      <h4 className="Card-title">{props.caption}</h4>
-      <img className="Card-image" src={props.src} alt={props.caption} />
+      <h4 className="Card-title">{caption}</h4>
+      <img className="Card-image" src={src} alt={caption} />
       <small className="Card-small">
-        Image {props.currNum} of {props.totalNum}.
+        Image {currNum} of {totalNum}.
       </small>
     </div>
   );
